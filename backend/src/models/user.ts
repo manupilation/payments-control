@@ -12,4 +12,29 @@ export default class UserModel {
 
     return user;
   };
+
+  loginRequest = async (data: IUser) => {
+    const user = await this.getUser(data.username);
+
+    if(!user) {
+      this.handlerLoginError();
+      return;
+    }
+
+    const passwordVerify = await PasswordHash.comparePassword(data.password, user.password);
+
+    if (!passwordVerify) {
+      this.handlerLoginError();
+      return;
+    }
+
+    return user;
+  };
+
+  handlerLoginError = () => {
+    const err = new Error();
+    err.name = 'invalid_user';
+    err.message = 'Invalid user or password';
+    throw err;
+  };
 } 
