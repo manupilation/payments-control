@@ -5,4 +5,10 @@ interface User {
   email: string,
 }
 
+export interface RegisterUser {
+  username: string,
+  password: string,
+  email: string,
+}
+
 export default User;
