@@ -31,6 +31,18 @@ export default class UserModel {
     return user;
   };
 
+  registerRequest = async (data: RegisterUser) => {
+    const hashPass = await PasswordHash.hashPassword(data.password);
+
+    const register = await User.create({
+      username: data.username,
+      email: data.email,
+      password: hashPass,
+    });
+
+    return register;
+  };
+
   handlerLoginError = () => {
     const err = new Error();
     err.name = 'invalid_user';
