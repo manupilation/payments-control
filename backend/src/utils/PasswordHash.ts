@@ -7,4 +7,10 @@ export default class PasswordHash {
     return encryptPass;
   };
 
+  static comparePassword = async (pass: string, dbPass: string) => {
+    const comparePass = await compare(pass, dbPass);
+
+    return comparePass;
+  };
+
 }
