@@ -11,4 +11,14 @@ export default class PaymentsModel {
 
     return data;
   };
+
+  getAllByPatient = async (patient: string) => {
+    const data = await Payment.findAll({
+      where: {
+        patient,
+      },
+    });
+
+    return data;
+  };
 }
