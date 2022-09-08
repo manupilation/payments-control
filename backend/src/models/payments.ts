@@ -31,4 +31,16 @@ export default class PaymentsModel {
 
     return data;
   };
+
+  updatePayToPaid = async (id: number) => {
+    const data = await Payment.update({
+      paid: true
+    }, {
+      where: {
+        id
+      },
+    });
+
+    return data;
+  };
 }
