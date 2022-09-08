@@ -9,4 +9,14 @@ interface Payments {
   qtPortion: number,
 }
 
+export interface RegisterPay {
+  patient: string,
+  procedure: string,
+  paid: boolean,
+  date: string,
+  totalValue: number,
+  portionValue: number,
+  qtPortion: number,
+}
+
 export default Payments;
