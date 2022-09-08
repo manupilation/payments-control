@@ -21,4 +21,14 @@ export default class PaymentsModel {
 
     return data;
   };
+
+  getSomePays = async () => {
+    const data = await Payment.findAll({
+      where: {
+        paid: false,
+      }
+    });
+
+    return data;
+  };
 }
