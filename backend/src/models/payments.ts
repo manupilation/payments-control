@@ -79,4 +79,30 @@ export default class PaymentsModel {
 
     return data;
   };
+
+  updatePayTotallyPaid = async (id: number) => {
+    // Paga todas as parcelas, multiplicando o portionValue pelo qtPortion
+    const pay = await this.getPayById(id);
+    if(!pay) return this.throwNoPayError();
+
+    const calcPayTotal = await new CalcPay(pay).payAllPortions();
+
+    if(!calcPayTotal) return this.throwQtPortionError();
+
+    const data = await Payment.update({
+      qtPortion: calcPayTotal.qtPortion,
+      totalValue: calcPayTotal.totalValue,
+      paid: calcPayTotal.paid,
+      date: Sequelize.fn('NOW'),
+    }, { where : { id } });
+
+    await Entry.create({
+      date: Sequelize.fn('NOW'),
+      value: pay.totalValue,
+      procedure: pay.id,
+      patient: pay.patient,
+    });
+
+    return data;
+  };
 }
