@@ -105,4 +105,20 @@ export default class PaymentsModel {
 
     return data;
   };
+
+  throwNoPayError = () => {
+    const err = new Error();
+    err.name = 'no_payment';
+    err.message = 'Não encontramos nenhum pagamento com esses dados.';
+
+    throw err;
+  };
+
+  throwQtPortionError = () => {
+    const err = new Error();
+    err.name = 'no_portion';
+    err.message = 'Este procedimento já foi completamente pago!';
+
+    throw err;
+  };
 }
