@@ -29,6 +29,11 @@ Entry.init({
   procedure: {
     type: DataTypes.INTEGER,
     allowNull: false,
+  },
+
+  patient: {
+    type: DataTypes.STRING,
+    allowNull: false,
   }
 }, {
   sequelize: db,
