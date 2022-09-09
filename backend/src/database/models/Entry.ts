@@ -7,6 +7,7 @@ class Entry extends Model {
   declare date: string;
   declare value: number;
   declare procedure: number;
+  declare patient: string;
 }
 
 Entry.init({
