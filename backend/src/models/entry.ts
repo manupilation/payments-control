@@ -28,6 +28,16 @@ export default class EntryModel {
     return data;
   };
 
+  getAllInDate = async (date: string) => {
+    const data = await Entry.findAll({
+      where: {
+        date,
+      },
+    });
+
+    return data;
+  };
+
   createEntry = async (data: RegisterEntry) => {
     const creating = await Entry.create({
       data,
