@@ -8,6 +8,16 @@ export default class EntryModel {
     return data;
   };
 
+  getAllByPatient = async (patient: string) => {
+    const data = await Entry.findAll({
+      where: {
+        patient
+      },
+    });
+
+    return data;
+  };
+
   createEntry = async (data: RegisterEntry) => {
     const creating = await Entry.create({
       data,
