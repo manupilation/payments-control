@@ -18,6 +18,16 @@ export default class EntryModel {
     return data;
   };
 
+  getAllBetweenDates = async (startDate: string, endDate: string) => {
+    const data = await Entry.findAll({
+      where: {
+        'date': {[Op.between]: [startDate, endDate]},
+      },
+    });
+
+    return data;
+  };
+
   createEntry = async (data: RegisterEntry) => {
     const creating = await Entry.create({
       data,
