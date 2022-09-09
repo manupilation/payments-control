@@ -22,6 +22,19 @@ class CalcPay extends Payment {
 
     return finalValue;
   };
+
+  payAllPortions = async () => {
+    if (this.qtPortion < 1) return false;
+
+    const finalValue = {
+      qtPortion: 0,
+      totalValue: 0,
+      paid: true,
+    };
+
+    return finalValue;
+
+  };
 }
 
 export default CalcPay;
