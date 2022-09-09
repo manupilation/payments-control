@@ -1,5 +1,8 @@
+import { Sequelize } from 'sequelize/types';
+import Entry from '../database/models/Entry';
 import Payment from '../database/models/Payments';
-import IPayment, { RegisterPay } from '../types/interfaces/Payments';
+import { RegisterPay } from '../types/interfaces/Payments';
+import CalcPay from '../utils/CalcPays';
 
 export default class PaymentsModel {
   getPayById = async (id: number) => {
@@ -53,9 +56,6 @@ export default class PaymentsModel {
   };
 
   updatePaySubtractPortion = async (id: number) => {
-    // Subtrai uma parcela e a registra no entry
-    // O valor substituido é subtraido do total, mas o valor da portion não muda
-    //
     const pay = await this.getPayById(id);
     if(!pay) return this.throwNoPayError();
 
@@ -81,7 +81,6 @@ export default class PaymentsModel {
   };
 
   updatePayTotallyPaid = async (id: number) => {
-    // Paga todas as parcelas, multiplicando o portionValue pelo qtPortion
     const pay = await this.getPayById(id);
     if(!pay) return this.throwNoPayError();
 
