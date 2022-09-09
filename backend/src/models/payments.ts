@@ -32,6 +32,14 @@ export default class PaymentsModel {
     return data;
   };
 
+  createPay = async (data: RegisterPay) => {
+    const register = await Payment.create({
+      data
+    });
+
+    return register;
+  };
+
   updatePayToPaid = async (id: number) => {
     const data = await Payment.update({
       paid: true
