@@ -38,6 +38,12 @@ export default class EntryModel {
     return data;
   };
 
+  getByPk = async (id: number) => {
+    const data = await Entry.findByPk(id);
+
+    return data;
+  };
+
   createEntry = async (data: RegisterEntry) => {
     const creating = await Entry.create({
       data,
