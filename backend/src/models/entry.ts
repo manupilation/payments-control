@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import Entry from '../database/models/Entry';
 import { RegisterEntry } from '../types/interfaces/Entry';
 
