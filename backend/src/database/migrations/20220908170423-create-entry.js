@@ -25,7 +25,12 @@ module.exports = {
       procedure: {
         type: Sequelize.INTEGER,
         allowNull: false,
-      }
+      },
+
+      patient: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
     });
   },
 
