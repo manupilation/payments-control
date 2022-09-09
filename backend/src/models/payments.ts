@@ -51,4 +51,32 @@ export default class PaymentsModel {
 
     return data;
   };
+
+  updatePaySubtractPortion = async (id: number) => {
+    // Subtrai uma parcela e a registra no entry
+    // O valor substituido é subtraido do total, mas o valor da portion não muda
+    //
+    const pay = await this.getPayById(id);
+    if(!pay) return this.throwNoPayError();
+
+    const calcPay = await new CalcPay(pay).payOnePortion();
+
+    if(!calcPay) return this.throwQtPortionError();
+
+    const data = await Payment.update({
+      qtPortion: calcPay.qtPortion,
+      totalValue: calcPay.totalValue,
+      paid: calcPay.paid,
+      date: Sequelize.fn('NOW'),
+    }, { where : { id } });
+
+    await Entry.create({
+      date: Sequelize.fn('NOW'),
+      value: calcPay.qtPortion,
+      procedure: pay.id,
+      patient: pay.patient,
+    });
+
+    return data;
+  };
 }
