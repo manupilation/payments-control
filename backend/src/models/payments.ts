@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize/types';
-import Entry from '../database/models/Entry';
+import EntryModel from './entry';
 import Payment from '../database/models/Payments';
 import { RegisterPay } from '../types/interfaces/Payments';
 import CalcPay from '../utils/CalcPays';
@@ -70,8 +70,10 @@ export default class PaymentsModel {
       date: Sequelize.fn('NOW'),
     }, { where : { id } });
 
-    await Entry.create({
-      date: Sequelize.fn('NOW'),
+    const entry = new EntryModel();
+
+    await entry.createEntry({
+      date: String(Sequelize.fn('NOW')),
       value: calcPay.qtPortion,
       procedure: pay.id,
       patient: pay.patient,
@@ -92,11 +94,13 @@ export default class PaymentsModel {
       qtPortion: calcPayTotal.qtPortion,
       totalValue: calcPayTotal.totalValue,
       paid: calcPayTotal.paid,
-      date: Sequelize.fn('NOW'),
+      date: String(Sequelize.fn('NOW')),
     }, { where : { id } });
 
-    await Entry.create({
-      date: Sequelize.fn('NOW'),
+    const entry = new EntryModel();
+
+    await entry.createEntry({
+      date: String(Sequelize.fn('NOW')),
       value: pay.totalValue,
       procedure: pay.id,
       patient: pay.patient,
