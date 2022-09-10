@@ -18,6 +18,11 @@ class PaymentService {
 
     return data;
   };
+  getSomePays = async () => {
+    const data = await this.paymentModel.getSomePays();
+
+    return data;
+  };
 }
 
 export default PaymentService;
