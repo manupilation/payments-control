@@ -36,6 +36,12 @@ class PaymentService {
 
     return data;
   };
+
+  updatePaySubtractPortion = async (id: number) => {
+    const data = await this.paymentModel.updatePaySubtractPortion(id);
+
+    return data;
+  };
 }
 
 export default PaymentService;
