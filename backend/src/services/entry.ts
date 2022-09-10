@@ -30,4 +30,10 @@ export default class EntryService {
 
     return data;
   };
+
+  createEntry = async (data: RegisterEntry) => {
+    const creating = await this.entryModel.createEntry(data);
+
+    return creating;
+  };
 }
