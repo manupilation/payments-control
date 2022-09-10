@@ -12,4 +12,10 @@ export default class EntryService {
 
     return data;
   };
+
+  getAllByPatient = async (patient: string) => {
+    const data = await this.entryModel.getAllByPatient(patient);
+
+    return data;
+  };
 }
