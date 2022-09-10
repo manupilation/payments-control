@@ -18,4 +18,10 @@ export default class EntryService {
 
     return data;
   };
+
+  getAllInDate = async (date: string) => {
+    const data = await this.entryModel.getAllInDate(date);
+
+    return data;
+  };  
 }
