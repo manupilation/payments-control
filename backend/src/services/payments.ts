@@ -30,6 +30,12 @@ class PaymentService {
 
     return register;
   };
+
+  updatePayToPaid = async (id: number) => {
+    const data = await this.paymentModel.updatePayToPaid(id);
+
+    return data;
+  };
 }
 
 export default PaymentService;
