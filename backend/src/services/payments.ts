@@ -1,4 +1,5 @@
 import PaymentsModel from '../models/payments';
+import { RegisterPay } from '../types/interfaces/Payments';
 
 class PaymentService {
   declare paymentModel: PaymentsModel;
