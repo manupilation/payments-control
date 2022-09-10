@@ -29,5 +29,5 @@ export default class EntryService {
     const data = await this.entryModel.getByPk(id);
 
     return data;
-  };  
+  };
 }
