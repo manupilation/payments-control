@@ -6,4 +6,10 @@ export default class EntryService {
   constructor() {
     this.entryModel = new EntryModel();
   }
+
+  getAll = async () => {
+    const data = await this.entryModel.getAll();
+
+    return data;
+  };
 }
