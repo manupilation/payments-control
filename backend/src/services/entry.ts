@@ -1,4 +1,5 @@
 import EntryModel from '../models/entry';
+import { RegisterEntry } from '../types/interfaces/Entry';
 
 export default class EntryService {
   declare entryModel: EntryModel;
