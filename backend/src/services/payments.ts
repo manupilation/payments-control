@@ -18,10 +18,17 @@ class PaymentService {
 
     return data;
   };
+
   getSomePays = async () => {
     const data = await this.paymentModel.getSomePays();
 
     return data;
+  };
+
+  createPay = async (data: RegisterPay) => {
+    const register = await this.paymentModel.createPay(data);
+
+    return register;
   };
 }
 
