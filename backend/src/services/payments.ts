@@ -12,6 +12,12 @@ class PaymentService {
 
     return data;
   };
+
+  getAllByPatient = async (patient: string) => {
+    const data = await this.paymentModel.getAllByPatient(patient);
+
+    return data;
+  };
 }
 
 export default PaymentService;
