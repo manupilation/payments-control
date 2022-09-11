@@ -37,4 +37,12 @@ export default class EntryController {
 
     res.status(200).json(data);
   };
+
+  createEntry = async (req: Request, res: Response) => {
+    const { data } = req.body;
+
+    const creating = await this.entryService.createEntry(data);
+
+    res.status(200).json(creating);
+  };
 }
