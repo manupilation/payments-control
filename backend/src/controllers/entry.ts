@@ -13,4 +13,12 @@ export default class EntryController {
   
     res.status(200).json(data);
   };
+
+  getAllByPatient = async (req: Request, res: Response) => {
+    const { patient } = req.body;
+
+    const data = await this.entryService.getAllByPatient(patient);
+
+    res.status(200).json(data);
+  };
 }
