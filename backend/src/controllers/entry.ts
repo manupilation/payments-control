@@ -7,4 +7,10 @@ export default class EntryController {
   constructor() {
     this.entryService = new EntryService;
   }
+
+  getAll = async (req: Request, res: Response) => {
+    const data = await this.entryService.getAll();
+  
+    res.status(200).json(data);
+  };
 }
