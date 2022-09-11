@@ -21,4 +21,12 @@ export default class EntryController {
 
     res.status(200).json(data);
   };
+
+  getAllInDate = async (req: Request, res: Response) => {
+    const { date } = req.body;
+
+    const data = await this.entryService.getAllInDate(date);
+
+    res.status(200).json(data);
+  };
 }
