@@ -27,4 +27,11 @@ export default class PaymentController {
 
     res.status(200).json(data);
   };
+
+  createPay = async (req: Request, res: Response) => {
+    const { data } = req.body;
+    const register = await this.paymentService.createPay(data);
+
+    res.status(200).json(register);
+  };
 }
