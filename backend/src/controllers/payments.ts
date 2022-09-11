@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import PaymentService from '../services/payments';
 
 export default class PaymentController {
