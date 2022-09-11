@@ -7,4 +7,11 @@ export default class PaymentController {
   constructor() {
     this.paymentService = new PaymentService;
   }
+
+  getPayById = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const data = await this.paymentService.getPayById(Number(id));
+
+    res.status(200).json(data);
+  };
 }
