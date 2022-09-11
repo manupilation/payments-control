@@ -34,4 +34,28 @@ export default class PaymentController {
 
     res.status(200).json(register);
   };
+
+  updatePayToPaid = async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    const data = await this.paymentService.updatePayToPaid(Number(id));
+
+    res.status(200).json(data);
+  };
+
+  updatePaySubtractPortion = async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    const data = await this.paymentService.updatePaySubtractPortion(Number(id));
+
+    res.status(200).json(data);
+  };
+
+  updatePayTotallyPaid = async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    const data = await this.paymentService.updatePayTotallyPaid(Number(id));
+
+    res.status(200).json(data);
+  };
 }
