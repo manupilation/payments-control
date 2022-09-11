@@ -14,4 +14,11 @@ export default class PaymentController {
 
     res.status(200).json(data);
   };
+
+  getAllByPatient = async (req: Request, res: Response) => {
+    const { patient } = req.body;
+    const data = await this.paymentService.getAllByPatient(patient);
+
+    res.status(200).json(data);
+  };
 }
