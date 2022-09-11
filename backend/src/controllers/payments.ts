@@ -21,4 +21,10 @@ export default class PaymentController {
 
     res.status(200).json(data);
   };
+
+  getSomePays = async (req: Request, res: Response) => {
+    const data = await this.paymentService.getSomePays();
+
+    res.status(200).json(data);
+  };
 }
