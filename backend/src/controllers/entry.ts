@@ -29,4 +29,12 @@ export default class EntryController {
 
     res.status(200).json(data);
   };
+
+  getByPk = async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    const data = await this.entryService.getByPk(Number(id));
+
+    res.status(200).json(data);
+  };
 }
