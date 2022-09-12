@@ -28,11 +28,11 @@ module.exports = {
         allowNull: false,
       },
       total_value: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
       },
       portion_value: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
       },
       qt_portion: {
