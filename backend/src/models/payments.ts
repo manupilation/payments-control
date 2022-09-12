@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize/types';
+import { Sequelize } from 'sequelize';
 import EntryModel from './entry';
 import Payment from '../database/models/Payments';
 import { RegisterPay } from '../types/interfaces/Payments';
@@ -31,6 +31,8 @@ export default class PaymentsModel {
         paid: false,
       }
     });
+
+    console.log(data);
 
     return data;
   };
