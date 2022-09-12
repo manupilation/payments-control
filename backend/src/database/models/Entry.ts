@@ -1,6 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
 import db from './index';
-import Payment from './Payments';
 
 class Entry extends Model {
   declare id: number;
@@ -23,7 +22,7 @@ Entry.init({
   },
 
   value: {
-    type: DataTypes.DECIMAL,
+    type: DataTypes.DECIMAL(10, 2),
     allowNull: false,
   },
 
@@ -42,7 +41,5 @@ Entry.init({
   underscored: true,
   tableName: 'entries',
 });
-
-Entry.hasOne(Payment, { foreignKey: 'id' });
 
 export default Entry;
