@@ -22,7 +22,7 @@ const payMockLastPortion: Payments = {
   qtPortion: 1
 };
 
-const payMockNoPortion: Payments = {
+const payMockAllPortions: Payments = {
   id: 12,
   patient: 'Gwen Pellinore',
   procedure: 'Micro-cirurgia',
@@ -30,7 +30,7 @@ const payMockNoPortion: Payments = {
   date: '',
   totalValue: 600,
   portionValue: 600,
-  qtPortion: 1
+  qtPortion: 12
 };
 
 const payMockTotallyPaid: Payments = {
@@ -46,7 +46,7 @@ const payMockTotallyPaid: Payments = {
 
 export {
   payMock,
-  payMockNoPortion,
+  payMockAllPortions,
   payMockLastPortion,
   payMockTotallyPaid,
 };
