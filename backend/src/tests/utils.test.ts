@@ -2,10 +2,10 @@
 // const { CalcPay } = require('../utils/CalcPays');
 import CalcPay from '../utils/CalcPays';
 // const PasswordHash = require('../utils/PasswordHash');
-const { payMock, payMockLastPortion, payMockTotallyPaid } = require('./mocks/calcPayMock');
+const { payMock, payMockLastPortion, payMockTotallyPaid, payMockAllPortions } = require('./mocks/calcPayMock');
 
 describe('CalcPay tests', () => {
-  describe('1- Testa as possibilidades de Pay One Portion', () => {
+  describe('1 - Testa as possibilidades de Pay One Portion', () => {
     beforeAll(() => {
       jest.resetAllMocks();
     });
@@ -34,6 +34,28 @@ describe('CalcPay tests', () => {
       const calcPay = new CalcPay(payMockTotallyPaid).payOnePortion();
 
       expect(await calcPay).toBeFalsy();
+    });
+  });
+
+  describe('2 - Testa as possibilidades de PayAllPortions', () => {
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('A- Testa se retorna os valores esperados', async () => {
+      const payAll = new CalcPay(payMockAllPortions).payAllPortions();
+
+      expect(await payAll).toEqual({
+        qtPortion: 0,
+        totalValue: 0,
+        paid: true,
+      });
+    });
+
+    it('B- Testa se retorna false caso a dívida já está totalmente paga', async () => {
+      const payAll = new CalcPay(payMockTotallyPaid).payAllPortions();
+
+      expect(await payAll).toBeFalsy();
     });
   });
 });
