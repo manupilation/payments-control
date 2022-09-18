@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 // const { CalcPay } = require('../utils/CalcPays');
 import CalcPay from '../utils/CalcPays';
-// const PasswordHash = require('../utils/PasswordHash');
+import PasswordHash from '../utils/PasswordHash';
 const { payMock, payMockLastPortion, payMockTotallyPaid, payMockAllPortions } = require('./mocks/calcPayMock');
 
 describe('CalcPay tests', () => {
@@ -56,6 +56,47 @@ describe('CalcPay tests', () => {
       const payAll = new CalcPay(payMockTotallyPaid).payAllPortions();
 
       expect(await payAll).toBeFalsy();
+    });
+  });
+});
+
+describe('HashPass tests', () => {
+  describe('1- Testa as possibilidades para o metodo hashPassword', () => {
+    const hashString = 'Aracnofobia';
+    const hash = PasswordHash.hashPassword(hashString);
+
+    it('A - Testa se a função gera um hash de uma string', async () => {
+      expect(await hash).not.toBe(hashString);
+    });
+
+    it('B - Testa se o hash sempre retorna o tamanho padrão', async () => {
+      expect((await hash).length).toBe(60);
+    });
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+    });
+  });
+
+  describe('2- Testa as possibilidades de compare password', () => {
+    const hashString = 'NationalAnthem';
+    const hash = PasswordHash.hashPassword(hashString);
+
+    it('A - Testa se, ao comparar corretamente, retorna true', async () => {
+      const compare = await PasswordHash.comparePassword(hashString, await hash);
+    
+      expect(compare).toBeTruthy();
+    });
+
+    it('B - Testa se, ao comparar incorretamente, retorna false', async () => {
+      const compare = await PasswordHash
+        .comparePassword('I\'m wondering why I got out of bed at all', await hash);
+
+      expect(compare).toBeFalsy();
+    });
+
+    beforeEach(() => {
+      jest.resetAllMocks();
     });
   });
 });
